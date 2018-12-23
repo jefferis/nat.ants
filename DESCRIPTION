@@ -1,0 +1,19 @@
+Package: nat.ants
+Title: Bridge neuroanatomy toolbox ('nat') and 'ANTs' registration tools
+Version: 0.0.0.9000
+Authors@R: person("Gregory","Jefferis", email="jefferis@gmail.com", 
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0587-9355"))
+Description: Integrate the neuroanatomy toolbox R package 'nat' and its
+    many auxiliary packages with the Advanced Normalization Tools ('ANTs')
+    registration toolkit developed at the University of Pennsylvania. This
+    enables 'ANTs' registrations to be used by 'nat' to transform points or
+    image data.
+Depends: nat
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: ANTsRCore
+RoxygenNote: 6.1.1
+Suggests: 
+    spelling
+Language: en-GB
