@@ -20,7 +20,8 @@
 #'   non-rigid registrations) are not.
 #' @export
 #' @return A character vector with additional class \code{antsreg}.
-#' 
+#' @examples 
+#' \dontrun{
 #' # define forward and inverse registrations
 #' inv=antsreg("JRC2018F_FAFB/JRC2018F_FAFB1InverseWarp_down.nii.gz",
 #'     "JRC2018F_FAFB/JRC2018F_FAFB0GenericAffine.mat", swap=c(FALSE,TRUE))
@@ -39,6 +40,7 @@
 #' da1glomr.fafbum
 #' res
 #' res2
+#' }
 antsreg <- function(..., swap=NULL) {
   x <- path.expand(as.character(list(...)))
   if(!all(file.exists(x))) stop("... must point to files on disk!")
@@ -75,4 +77,3 @@ xformpoints.antsreg <- function(reg, points, ...) {
                               transformlist=rev(reg),
                               whichtoinvert = !swapped)
 }
-

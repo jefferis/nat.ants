@@ -15,7 +15,26 @@ non-rigid registrations) are not.}
 }
 \value{
 A character vector with additional class \code{antsreg}.
+}
+\description{
+Wrapping paths to one or more ANTs registration files on disk in
+  an \code{antsreg} object means that they can be used by
+  \code{nat::\link{xform}} and inside \code{nat::reglist} objects.
+}
+\details{
+At present, we assume that all ANTs transforms are specified by
+  files on disk.
 
+  For the purposes of the swap argument, we assume we are trying to specify a
+  registration in the direction required for images to be transformed. This
+  is the opposite of the direction required for transformation of points.
+
+  Registrations are given in the order that they are to be applied reading
+  from left to right. See \code{nat::\link{xform}} and
+  \code{nat::\link{reglist}} for further details.
+}
+\examples{
+\dontrun{
 # define forward and inverse registrations
 inv=antsreg("JRC2018F_FAFB/JRC2018F_FAFB1InverseWarp_down.nii.gz",
     "JRC2018F_FAFB/JRC2018F_FAFB0GenericAffine.mat", swap=c(FALSE,TRUE))
@@ -35,20 +54,4 @@ da1glomr.fafbum
 res
 res2
 }
-\description{
-Wrapping paths to one or more ANTs registration files on disk in
-  an \code{antsreg} object means that they can be used by
-  \code{nat::\link{xform}} and inside \code{nat::reglist} objects.
-}
-\details{
-At present, we assume that all ANTs transforms are specified by
-  files on disk.
-
-  For the purposes of the swap argument, we assume we are trying to specify a
-  registration in the direction required for images to be transformed. This
-  is the opposite of the direction required for transformation of points.
-
-  Registrations are given in the order that they are to be applied reading
-  from left to right. See \code{nat::\link{xform}} and
-  \code{nat::\link{reglist}} for further details.
 }
