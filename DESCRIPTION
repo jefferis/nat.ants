@@ -18,3 +18,5 @@ Suggests:
     spelling
 Language: en-GB
 Remotes: jefferis/nat
+URL: https://github.com/jefferis/nat.ants
+BugReports: https://github.com/jefferis/nat.ants/issues
