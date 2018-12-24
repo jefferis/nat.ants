@@ -12,6 +12,14 @@ Integrate the neuroanatomy toolbox R package 'nat' and its
     enables 'ANTs' registrations to be used by 'nat' to transform points or
     image data.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jefferis/nat.ants}
+  \item Report bugs at \url{https://github.com/jefferis/nat.ants/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Gregory Jefferis \email{jefferis@gmail.com} (0000-0002-0587-9355)
 
