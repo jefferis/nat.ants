@@ -24,3 +24,7 @@ Map points using ANTs registrations
 See \code{\link{antsreg}} for details of the ordering of
   registrations.
 }
+\seealso{
+Other antsreg: \code{\link{antsreg}}
+}
+\concept{antsreg}

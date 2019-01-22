@@ -19,7 +19,7 @@ A character vector with additional class \code{antsreg}.
 \description{
 Wrapping paths to one or more ANTs registration files on disk in
   an \code{antsreg} object means that they can be used by
-  \code{nat::\link{xform}} and inside \code{nat::reglist} objects.
+  \code{nat::\link{xform}} and inside \code{nat::\link{reglist}} objects.
 }
 \details{
 At present, we assume that all ANTs transforms are specified by
@@ -40,7 +40,7 @@ inv=antsreg("JRC2018F_FAFB/JRC2018F_FAFB1InverseWarp_down.nii.gz",
     "JRC2018F_FAFB/JRC2018F_FAFB0GenericAffine.mat", swap=c(FALSE,TRUE))
 fwd=antsreg("JRC2018F_FAFB/JRC2018F_FAFB0GenericAffine.mat",
     "JRC2018F_FAFB/JRC2018F_FAFB1Warp_down.nii.gz", swap=c(TRUE,TRUE))
-    
+
 # position of DA1 glomerulus in FAFB
 da1glomr.fafb <- cbind(429316, 217924, 42960)
 da1glomr.fafbum=da1glomr.fafb/1e3
@@ -55,3 +55,7 @@ res
 res2
 }
 }
+\seealso{
+Other antsreg: \code{\link{xformpoints.antsreg}}
+}
+\concept{antsreg}

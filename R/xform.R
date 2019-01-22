@@ -2,7 +2,7 @@
 #'
 #' @description Wrapping paths to one or more ANTs registration files on disk in
 #'   an \code{antsreg} object means that they can be used by
-#'   \code{nat::\link{xform}} and inside \code{nat::reglist} objects.
+#'   \code{nat::\link{xform}} and inside \code{nat::\link{reglist}} objects.
 #' @details At present, we assume that all ANTs transforms are specified by
 #'   files on disk.
 #'
@@ -20,14 +20,14 @@
 #'   non-rigid registrations) are not.
 #' @export
 #' @return A character vector with additional class \code{antsreg}.
-#' @examples 
+#' @examples
 #' \dontrun{
 #' # define forward and inverse registrations
 #' inv=antsreg("JRC2018F_FAFB/JRC2018F_FAFB1InverseWarp_down.nii.gz",
 #'     "JRC2018F_FAFB/JRC2018F_FAFB0GenericAffine.mat", swap=c(FALSE,TRUE))
 #' fwd=antsreg("JRC2018F_FAFB/JRC2018F_FAFB0GenericAffine.mat",
 #'     "JRC2018F_FAFB/JRC2018F_FAFB1Warp_down.nii.gz", swap=c(TRUE,TRUE))
-#'     
+#'
 #' # position of DA1 glomerulus in FAFB
 #' da1glomr.fafb <- cbind(429316, 217924, 42960)
 #' da1glomr.fafbum=da1glomr.fafb/1e3
@@ -35,12 +35,13 @@
 #' res <- xform(da1glomr.fafbum, inv)
 #' # and back again
 #' res2 <- xform(res, fwd)
-#' 
+#'
 #' # print out locations
 #' da1glomr.fafbum
 #' res
 #' res2
 #' }
+#' @family antsreg
 antsreg <- function(..., swap=NULL) {
   x <- path.expand(as.character(list(...)))
   if(!all(file.exists(x))) stop("... must point to files on disk!")
@@ -64,6 +65,7 @@ antsreg <- function(..., swap=NULL) {
 #' @export
 #' @return An Nx3 matrix of transformed points
 #' @importFrom nat xformpoints
+#' @family antsreg
 xformpoints.antsreg <- function(reg, points, ...) {
   if(ncol(points)!=3L)
     stop("xformpoints.antsreg only supports 3 dimensions!")
