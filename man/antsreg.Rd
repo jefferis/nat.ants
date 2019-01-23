@@ -2,9 +2,12 @@
 % Please edit documentation in R/xform.R
 \name{antsreg}
 \alias{antsreg}
+\alias{as.antsreg}
 \title{Wrapper object for one or more ANTs transforms}
 \usage{
 antsreg(..., swap = NULL)
+
+as.antsreg(x, inverse = FALSE)
 }
 \arguments{
 \item{...}{One or more ANTs registrations.}
@@ -12,6 +15,11 @@ antsreg(..., swap = NULL)
 \item{swap}{Whether or not to invert the registration. Note that while affine
 registrations are invertible, deformation fields (usually specifying
 non-rigid registrations) are not.}
+
+\item{x}{Path to a directory containing ANTs registration files}
+
+\item{inverse}{Whether or not to select the inverse direction when
+constructing an \code{antsreg} object from a directory.}
 }
 \value{
 A character vector with additional class \code{antsreg}.
@@ -20,6 +28,9 @@ A character vector with additional class \code{antsreg}.
 Wrapping paths to one or more ANTs registration files on disk in
   an \code{antsreg} object means that they can be used by
   \code{nat::\link{xform}} and inside \code{nat::\link{reglist}} objects.
+
+\code{as.antsreg} constructs an \code{antsreg} object from an
+  ANTs ouput directory. This is more convenient for end users.
 }
 \details{
 At present, we assume that all ANTs transforms are specified by
@@ -32,6 +43,10 @@ At present, we assume that all ANTs transforms are specified by
   Registrations are given in the order that they are to be applied reading
   from left to right. See \code{nat::\link{xform}} and
   \code{nat::\link{reglist}} for further details.
+
+ANTs typically writes registrations into folders containing a single
+  affine matrix and a pair of deformation fields (one defining the forward
+  transform, the other the inverse transform).
 }
 \examples{
 \dontrun{

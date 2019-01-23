@@ -79,3 +79,40 @@ xformpoints.antsreg <- function(reg, points, ...) {
                               transformlist=rev(reg),
                               whichtoinvert = !swapped)
 }
+
+
+#' @description \code{as.antsreg} constructs an \code{antsreg} object from an
+#'   ANTs ouput directory. This is more convenient for end users.
+#'
+#' @param x Path to a directory containing ANTs registration files
+#' @param inverse Whether or not to select the inverse direction when
+#'   constructing an \code{antsreg} object from a directory.
+#'
+#' @details ANTs typically writes registrations into folders containing a single
+#'   affine matrix and a pair of deformation fields (one defining the forward
+#'   transform, the other the inverse transform).
+#' @export
+#' @rdname antsreg
+as.antsreg <- function(x, inverse=FALSE) {
+  if(!file.exists(x)) stop("Cannot read directory :", x)
+  if(!file.info(x)$isdir) stop(x, "is not a directory!")
+  x <- normalizePath(x, mustWork = TRUE)
+  ff=dir(x)
+  affmat=grep("GenericAffine\\.mat$", ff, value = T)
+  if(length(affmat)!=1)
+    stop("I was expecting one affine .mat file, not ", length(affmat),"!")
+  remaining=setdiff(ff, affmat)
+  invdfield=grep("InverseWarp.*\\.nii(\\.gz){0,1}$", remaining, value = T)
+  if(!length(invdfield)==1)
+    stop("I was expecting one inverse deformation field, not ", length(invdfield),"!")
+  remaining=setdiff(ff, invdfield)
+  fwddfield <- grep("Warp.*\\.nii(\\.gz){0,1}$", remaining, value = T)
+  if(!length(fwddfield)==1)
+    stop("I was expecting one forward deformation field, not ", length(fwddfield),"!")
+  if(inverse) {
+    antsreg(file.path(x, affmat), file.path(x, fwddfield), swap=c(TRUE,TRUE))
+  } else {
+    antsreg(file.path(x, invdfield), file.path(x, affmat), swap=c(TRUE,FALSE))
+  }
+}
+

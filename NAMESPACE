@@ -2,5 +2,6 @@
 
 S3method(xformpoints,antsreg)
 export(antsreg)
+export(as.antsreg)
 importFrom(ANTsRCore,antsApplyTransformsToPoints)
 importFrom(nat,xformpoints)
