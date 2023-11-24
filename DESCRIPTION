@@ -17,6 +17,7 @@ RoxygenNote: 6.1.1
 Suggests: 
     spelling
 Language: en-GB
-Remotes: jefferis/nat
+Remotes: natverse/nat,
+    ANTsX/ANTsRCore
 URL: https://github.com/jefferis/nat.ants
 BugReports: https://github.com/jefferis/nat.ants/issues
